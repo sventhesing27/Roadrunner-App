@@ -1,0 +1,3177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadrunner Runaways - Pilot & Admin Edition</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto+Slab:wght@300;400;700&display=swap" rel="stylesheet">
+
+
+<style>
+:root{
+--bg:#050816;
+--panel:rgba(10,15,35,0.10);
+--panel2:rgba(15,20,45,0.18);
+--accent:#00eaff;
+--accent2:#c020ff;
+--text:#d9f7ff;
+--border:rgba(0,234,255,0.22);
+}
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+color:var(--text);
+background:
+linear-gradient(
+180deg,
+rgba(5,8,22,0.45),
+rgba(5,8,22,0.55)
+),
+url("background.jpg");
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment:fixed;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px 22px;
+background:rgba(5,10,30,0.10);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,0.12);
+box-shadow:0 0 30px rgba(0,234,255,0.12);
+position:sticky;
+top:0;
+z-index:999;
+border-radius:0 0 18px 18px;
+}
+
+nav{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+nav a,button{
+background:linear-gradient(135deg,#00d9ff,#c020ff);
+padding:12px 18px;
+border-radius:16px;
+border:1px solid rgba(255,255,255,0.15);
+color:white;
+font-weight:bold;
+cursor:pointer;
+text-decoration:none;
+transition:.25s;
+box-shadow:0 0 25px rgba(0,234,255,0.25);
+backdrop-filter:blur(10px);
+}
+
+nav a:hover,button:hover{
+transform:translateY(-2px);
+box-shadow:0 0 30px rgba(0,234,255,0.4);
+}
+
+main{
+padding:20px;
+display:grid;
+gap:20px;
+}
+
+.card{
+background:rgba(10,15,35,0.12);
+border:1px solid rgba(255,255,255,0.14);
+border-radius:28px;
+padding:22px;
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+box-shadow:
+0 8px 32px rgba(0,234,255,0.12),
+0 0 25px rgba(192,32,255,0.08);
+}
+
+input,select,textarea{
+width:100%;
+padding:14px;
+margin-top:10px;
+margin-bottom:10px;
+border-radius:16px;
+border:1px solid rgba(255,255,255,0.15);
+background:rgba(8,15,30,0.20);
+backdrop-filter:blur(10px);
+color:white;
+font-size:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+th{
+color:var(--accent);
+}
+
+#loginCard{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+gap:25px;
+padding:20px;
+}
+
+#publicHome{
+max-width:500px;
+}
+
+h2,h3{
+color:var(--accent);
+}
+
+
+.sidebarAdmin{
+position:fixed;
+left:18px;
+top:100px;
+width:240px;
+height:calc(100vh - 120px);
+background:rgba(10,15,35,0.14);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,0.12);
+border-radius:28px;
+padding:20px;
+overflow:auto;
+box-shadow:0 0 30px rgba(0,234,255,0.10);
+}
+
+.sidebarAdmin h2{
+margin-top:0;
+font-size:28px;
+background:linear-gradient(90deg,#00eaff,#c020ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.sidebarAdmin a{
+display:block;
+padding:14px;
+margin-bottom:10px;
+border-radius:16px;
+text-decoration:none;
+color:white;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+transition:0.2s;
+}
+
+.sidebarAdmin a:hover{
+transform:translateX(4px);
+background:linear-gradient(135deg,rgba(0,234,255,0.18),rgba(192,32,255,0.18));
+}
+
+.mainContent{
+margin-left:280px;
+padding:20px;
+}
+
+#adminPanel table{
+background:rgba(255,255,255,0.03);
+border-radius:18px;
+overflow:hidden;
+}
+
+#adminPanel tr:hover{
+background:rgba(255,255,255,0.05);
+}
+
+
+#pilotSidebar{
+left:18px;
+border:1px solid rgba(0,234,255,0.18);
+}
+
+#adminSidebar{
+left:18px;
+border:1px solid rgba(255,0,180,0.18);
+}
+
+#pilotSidebar h2{
+background:linear-gradient(90deg,#00eaff,#4da3ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+
+
+/* DARK CYBERPUNK INPUTS */
+
+input,
+select,
+textarea{
+
+background:
+rgba(5,10,25,0.92) !important;
+
+color:
+#ffffff !important;
+
+border:
+1px solid rgba(0,234,255,0.25) !important;
+
+backdrop-filter:
+blur(12px);
+
+-webkit-backdrop-filter:
+blur(12px);
+
+box-shadow:
+0 0 12px rgba(0,234,255,0.08);
+
+}
+
+input::placeholder,
+textarea::placeholder{
+
+color:
+rgba(255,255,255,0.58) !important;
+
+}
+
+select option{
+
+background:
+#050816 !important;
+
+color:
+#ffffff !important;
+
+}
+
+
+.rr-volume{
+width:120px;
+height:6px;
+appearance:none;
+-webkit-appearance:none;
+background:linear-gradient(90deg,#00eaff,#c020ff);
+border-radius:10px;
+outline:none;
+box-shadow:0 0 8px rgba(0,234,255,.4);
+}
+.rr-volume::-webkit-slider-thumb{
+-webkit-appearance:none;
+width:18px;
+height:18px;
+border-radius:50%;
+background:#00eaff;
+box-shadow:0 0 10px #00eaff,0 0 15px #c020ff;
+cursor:pointer;
+}
+
+</style>
+
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#00eaff">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Roadrunner">
+<meta name="mobile-web-app-capable" content="yes">
+
+
+
+<style>
+
+
+
+
+
+
+<style>
+
+/* FUTURISTIC CYBER TOP BAR */
+
+header{
+
+position:sticky;
+top:0;
+z-index:9999;
+
+padding:10px 22px !important;
+
+background:
+linear-gradient(
+90deg,
+rgba(0,10,25,0.88),
+rgba(20,0,35,0.88)
+) !important;
+
+border:none !important;
+
+border-radius:0 !important;
+
+backdrop-filter:blur(18px);
+
+box-shadow:
+0 0 20px rgba(0,234,255,0.25),
+0 0 30px rgba(192,32,255,0.18);
+
+overflow:hidden;
+
+}
+
+/* neon lines */
+
+header::before{
+
+content:"";
+
+position:absolute;
+top:0;
+left:0;
+
+width:100%;
+height:3px;
+
+background:
+linear-gradient(
+90deg,
+#00eaff,
+#c020ff,
+#00eaff
+);
+
+box-shadow:
+0 0 20px #00eaff,
+0 0 25px #c020ff;
+
+}
+
+header::after{
+
+content:"";
+
+position:absolute;
+bottom:0;
+left:0;
+
+width:100%;
+height:2px;
+
+background:
+linear-gradient(
+90deg,
+rgba(0,234,255,0.65),
+rgba(192,32,255,0.65)
+);
+
+}
+
+/* hide title text */
+
+header h1,
+header h2,
+header h3,
+header p,
+.logo,
+#heroTitle{
+
+display:none !important;
+
+}
+
+/* nav */
+
+nav{
+
+width:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+flex-wrap:wrap;
+
+}
+
+/* cyber buttons */
+
+nav a,
+header button{
+
+background:
+rgba(255,255,255,0.04) !important;
+
+border:
+1px solid rgba(255,255,255,0.10) !important;
+
+color:#d9f7ff !important;
+
+border-radius:14px;
+
+box-shadow:
+0 0 12px rgba(0,234,255,0.08) !important;
+
+transition:0.25s;
+
+}
+
+nav a:hover,
+header button:hover{
+
+transform:
+translateY(-2px);
+
+background:
+linear-gradient(
+135deg,
+rgba(0,234,255,0.18),
+rgba(192,32,255,0.18)
+) !important;
+
+box-shadow:
+0 0 20px rgba(0,234,255,0.28),
+0 0 25px rgba(192,32,255,0.22) !important;
+
+}
+
+</style>
+
+
+
+
+<style>
+
+/* ROADRUNNER FINAL RESPONSIVE CYBER UI */
+
+/* REMOVE TOP NAV */
+
+header{
+display:none !important;
+}
+
+/* SIDEBAR */
+
+.sidebarAdmin{
+
+position:fixed !important;
+
+left:18px !important;
+top:18px !important;
+
+width:250px;
+height:calc(100vh - 36px);
+
+border-radius:28px;
+
+background:
+linear-gradient(
+180deg,
+rgba(8,12,28,0.82),
+rgba(15,5,35,0.72)
+) !important;
+
+backdrop-filter:blur(22px);
+
+border:
+1px solid rgba(0,234,255,0.14);
+
+box-shadow:
+0 0 30px rgba(0,234,255,0.12),
+0 0 40px rgba(192,32,255,0.10);
+
+z-index:9999;
+
+overflow-y:auto;
+
+}
+
+/* sidebar titles */
+
+.sidebarAdmin h2{
+
+font-size:26px;
+
+text-shadow:
+0 0 12px rgba(0,234,255,0.35);
+
+}
+
+/* sidebar buttons */
+
+.sidebarAdmin a{
+
+background:
+rgba(255,255,255,0.03) !important;
+
+border:
+1px solid rgba(255,255,255,0.06);
+
+box-shadow:
+0 0 10px rgba(0,234,255,0.06);
+
+transition:0.25s;
+
+}
+
+.sidebarAdmin a:hover{
+
+transform:
+translateX(5px);
+
+background:
+linear-gradient(
+135deg,
+rgba(0,234,255,0.18),
+rgba(192,32,255,0.18)
+) !important;
+
+box-shadow:
+0 0 20px rgba(0,234,255,0.22);
+
+}
+
+/* content */
+
+.mainContent{
+
+margin-left:290px !important;
+padding:18px;
+
+}
+
+/* cards */
+
+.card{
+
+background:
+rgba(10,15,35,0.20) !important;
+
+backdrop-filter:
+blur(18px);
+
+border:
+1px solid rgba(255,255,255,0.10);
+
+box-shadow:
+0 0 25px rgba(0,234,255,0.08),
+0 0 20px rgba(192,32,255,0.06);
+
+}
+
+/* buttons */
+
+button{
+
+background:
+linear-gradient(
+135deg,
+#00d9ff,
+#c020ff
+) !important;
+
+border:none !important;
+
+}
+
+/* tablet */
+
+@media screen and (max-width:1200px){
+
+.mainContent{
+
+margin-left:260px !important;
+padding:12px;
+
+}
+
+.sidebarAdmin{
+
+width:220px;
+
+}
+
+}
+
+/* mobile */
+
+@media screen and (max-width:768px){
+
+.sidebarAdmin{
+
+position:fixed !important;
+
+left:0 !important;
+top:0 !important;
+
+width:100% !important;
+height:auto !important;
+
+border-radius:0 0 24px 24px !important;
+
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+
+padding:12px;
+
+overflow-x:auto;
+
+}
+
+.sidebarAdmin h2{
+display:none;
+}
+
+.sidebarAdmin a{
+
+margin-bottom:0;
+white-space:nowrap;
+flex:0 0 auto;
+
+}
+
+.mainContent{
+
+margin-left:0 !important;
+margin-top:120px !important;
+padding:10px;
+
+}
+
+table{
+
+display:block;
+overflow-x:auto;
+
+}
+
+}
+
+/* tablet portrait rotate hint */
+
+.rotateNotice{
+
+display:none;
+
+position:fixed;
+inset:0;
+
+background:
+rgba(5,8,22,0.96);
+
+z-index:999999;
+
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+font-size:28px;
+
+color:white;
+
+backdrop-filter:blur(20px);
+
+}
+
+.rotateNotice span{
+
+font-size:42px;
+margin-bottom:20px;
+color:#00eaff;
+
+}
+
+@media screen and (orientation:portrait) and (min-width:768px){
+
+.rotateNotice{
+display:flex;
+}
+
+}
+
+</style>
+
+
+
+<style id="FINAL_SCIFI_TRANSPARENT_UI">
+
+/* =========================
+   FINAL SCI-FI HUD STYLE
+========================= */
+
+/* REMOVE MILKY EFFECT */
+
+*{
+backdrop-filter:none !important;
+-webkit-backdrop-filter:none !important;
+}
+
+/* KEEP SIDEBAR STYLED */
+
+.sidebarAdmin,
+.sidebarAdmin *{
+
+backdrop-filter:blur(12px) !important;
+-webkit-backdrop-filter:blur(12px) !important;
+
+}
+
+/* BODY */
+
+body::before{
+
+background:
+rgba(0,0,0,0.10) !important;
+
+}
+
+/* MAIN PANELS */
+
+.card,
+.panel,
+.contentBox,
+.mainContent > div,
+table{
+
+background:
+rgba(5,10,25,0.03) !important;
+
+border:
+1px solid rgba(255,255,255,0.08) !important;
+
+box-shadow:
+0 0 12px rgba(0,234,255,0.10),
+0 0 18px rgba(192,32,255,0.08) !important;
+
+position:relative;
+overflow:hidden;
+
+}
+
+/* FULL SCI-FI CORNERS */
+
+.card::before,
+.panel::before,
+.contentBox::before,
+.mainContent > div::before,
+table::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:85px;
+height:85px;
+
+border-top:
+2px solid rgba(0,234,255,0.95);
+
+border-left:
+2px solid rgba(0,234,255,0.95);
+
+pointer-events:none;
+
+}
+
+.card::after,
+.panel::after,
+.contentBox::after,
+.mainContent > div::after,
+table::after{
+
+content:"";
+
+position:absolute;
+
+right:0;
+bottom:0;
+
+width:85px;
+height:85px;
+
+border-right:
+2px solid rgba(192,32,255,0.95);
+
+border-bottom:
+2px solid rgba(192,32,255,0.95);
+
+pointer-events:none;
+
+}
+
+/* INPUTS */
+
+input,
+select,
+textarea{
+
+background:
+rgba(5,10,25,0.28) !important;
+
+border:
+1px solid rgba(0,234,255,0.18) !important;
+
+color:#fff !important;
+
+box-shadow:
+0 0 8px rgba(0,234,255,0.08);
+
+}
+
+/* BUTTONS */
+
+button{
+
+border:
+1px solid rgba(255,255,255,0.08) !important;
+
+box-shadow:
+0 0 12px rgba(0,234,255,0.18),
+0 0 18px rgba(192,32,255,0.14);
+
+}
+
+/* TABLE HOVER */
+
+tr:hover{
+
+background:
+rgba(255,255,255,0.03) !important;
+
+}
+
+/* CHAT */
+
+#chatBox,
+.chat-container{
+
+background:
+rgba(0,0,0,0.15) !important;
+
+}
+
+/* SIDEBAR SAFE */
+
+.sidebarAdmin::before,
+.sidebarAdmin::after,
+.sidebarAdmin a::before,
+.sidebarAdmin a::after{
+
+display:none !important;
+content:none !important;
+
+}
+
+</style>
+
+
+<style id="RR_CUSTOM_PLAYER">
+/* Native Player verstecken */
+#staffPlaylistPlayer,#localPlaylistPlayer{display:none;}
+
+.rr-player{
+background:rgba(5,10,25,.65);
+border:1px solid rgba(0,234,255,.25);
+border-radius:18px;
+padding:12px;
+margin:10px 0;
+box-shadow:0 0 15px rgba(0,234,255,.15),0 0 20px rgba(192,32,255,.1);
+}
+.rr-controls{display:flex;gap:10px;align-items:center;justify-content:center;}
+.rr-btn{
+background:linear-gradient(135deg,#00eaff,#c020ff);
+border:none;color:white;padding:8px 14px;border-radius:12px;font-weight:bold;
+cursor:pointer;
+}
+.rr-progress{
+height:8px;background:rgba(255,255,255,.08);
+border-radius:10px;overflow:hidden;margin-top:10px;
+}
+.rr-bar{
+height:100%;width:0%;
+background:linear-gradient(90deg,#00eaff,#c020ff);
+}
+.rr-title{color:#00eaff;margin-bottom:8px;text-align:center;}
+</style>
+
+</head>
+
+<body>
+
+<div class="rotateNotice">
+<span>📱 ↻</span>
+Bitte Tablet drehen
+</div>
+
+
+<div id="loginCard">
+<div class="card" style="width:320px;text-align:center;">
+<h2>Herzlich Willkommen</h2>
+<input id="username" placeholder="Email">
+<input id="password" type="password" placeholder="Passwort">
+<button id="loginBtn">Login</button>
+
+<div style="margin-top:15px;text-align:center;font-size:12px;color:#ccc;">
+<a href="https://roadrunner-runaways.de/impressum.html" target="_blank" style="color:#00eaff;">Impressum</a>
+&nbsp;|&nbsp;
+<a href="https://roadrunner-runaways.com/datenschutz.html" target="_blank" style="color:#00eaff;">Datenschutz</a>
+</div>
+
+<div id="error"></div>
+</div>
+
+<div id="publicHome" class="card" style="margin:15px;">
+<h2 id="heroTitle"></h2>
+<p id="heroText"></p>
+<h3>📰 News</h3>
+<div id="newsList"></div>
+<h3>📅 Events</h3>
+<div id="eventList"></div>
+</div>
+</div>
+
+<div id="dashboard" style="display:none">
+
+
+<div class="sidebarAdmin" id="pilotSidebar" style="display:none">
+
+<h2>ROADRUNNER MENU</h2>
+
+<a onclick="show('stats')">📊 Statistik</a>
+<a onclick="show('staff')">👨‍🚀 Piloten</a>
+<a onclick="show('inventory')">📦 Materialien</a>
+<a onclick="show('orders')">🛰 Stationen</a>
+<a onclick="show('links')">🔗 Links</a>
+<a onclick="show('materials')">📍 Sammelorte</a>
+<a onclick="show('stations')">🏛 Stationen</a>
+<a onclick="show('market')">🛒 Markt</a>
+<a onclick="openInara()">🌌 INARA</a>
+<a onclick="show('engineer')">⚙ Ingenieure</a>
+<a onclick="show('chat')">💬 Chat</a>
+<a onclick="show('donations')">💎 Spenden</a>
+<a onclick="show('music')">🎵 Musikcenter</a>
+
+</div>
+
+<div class="sidebarAdmin" id="adminSidebar" style="display:none">
+
+<h2>ROADRUNNER</h2>
+
+<a onclick="show('stats')">📊 Statistik</a>
+<a onclick="show('staff')">👨‍🚀 Piloten</a>
+<a onclick="show('inventory')">📦 Was noch fehlt</a>
+<a onclick="show('orders')">🛰 Welche Station</a>
+<a onclick="show('links')">🔗 Links</a>
+<a onclick="show('materials')">📍 Material Orte</a>
+<a onclick="show('stations')">🏛 Stationen</a>
+<a onclick="show('market')">🛒 Warenmarkt</a>
+<a onclick="openInara()">🌌 INARA</a>
+<a onclick="show('engineer')">⚙ Ingenieure</a>
+<a onclick="show('chat')">💬 Chat</a>
+<a onclick="show('donations')">💎 Spenden</a>
+<a onclick="show('music')">🎵 Musikcenter</a>
+<a onclick="show('adminPanel')">🛠 Admin Panel</a>
+
+</div>
+
+
+
+<header>
+<nav id="dynamicNav">
+<a onclick="show('stats')">Statistik</a>
+<a onclick="show('adminPanel')" id="adminNav" style="display:none">Admin</a>
+<a onclick="show('staff')">Piloten</a>
+<a onclick="show('inventory')">Was noch Fehlt</a>
+<a onclick="show('orders')">Welche Station</a>
+<a onclick="show('links')">Links</a>
+<a onclick="show('materials')">Material Orte</a>
+<a onclick="show('stations')">Stationen</a>
+<a onclick="show('market')">Warenmarkt</a>
+<a onclick="show('engineer')">Ingenieure</a>
+<a onclick="show('chat')">Chat</a>
+<a onclick="show('donations')">Spenden</a>
+</nav>
+<button onclick="backupFirestore()" id="backupBtn" style="display:none">Backup</button>
+<button onclick="restoreFirestore()" id="restoreBtn" style="display:none">Restore</button>
+<button onclick="logout()">Logout</button>
+</header>
+
+<div class="mainContent"><main>
+
+<section id="stats" class="card">
+<h3>Statistik</h3>
+<p>Piloten: <span id="statStaff">0</span></p>
+<p>Was noch Fehlt: <span id="statInventory">0</span></p>
+<p>Welche station: <span id="statOrders">0</span></p>
+<p>Links: <span id="statLinks">0</span></p>
+
+<h3>Fortschritt pro Station</h3><div id="stationProgressContainer"></div>
+<h3>Events</h3>
+
+<input id="eventTitle" placeholder="Event Name">
+<input id="eventDate" type="date">
+<input id="eventSystem" placeholder="System">
+
+<button onclick="addEvent()">Event erstellen</button>
+
+<table id="eventsTable">
+<thead>
+<tr>
+<th>Event</th>
+<th>Datum</th>
+<th>System</th>
+<th></th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</section>
+
+<section id="staff" class="card" style="display:none">
+<h3>Piloten</h3>
+<input id="staffName" placeholder="Name">
+<button onclick="addStaff()">Hinzufügen</button>
+<table id="staffTable">
+<thead><tr><th>Name</th><th></th></tr></thead>
+<tbody></tbody>
+</table>
+</section>
+
+<section id="inventory" class="card" style="display:none">
+<h3>Station auswählen</h3>
+<select id="stationSelect"></select>
+
+<h3>Material Planung (Admin)</h3>
+
+<input id="adminMaterial" placeholder="Material">
+<input id="adminNeeded" type="number" placeholder="Benötigt">
+<button onclick="addNeededMaterial()">Planen</button>
+
+<h3>Material Lieferung</h3>
+
+<select id="deliveryStationSelect">
+<option value="">🏛 Station auswählen</option>
+</select>
+
+<select id="deliverSelect"></select>
+<input id="deliverAmount" type="number" placeholder="Geliefert">
+<button onclick="deliverDelivery()">Liefern</button>
+
+
+<div style="margin:15px 0;">
+  <button onclick="pickRandomStation()">
+    🎲 Station würfeln
+  </button>
+
+  <div id="randomStationResult"
+       style="margin-top:10px;font-size:18px;font-weight:bold;color:#00eaff;">
+  </div>
+</div>
+
+<table id="inventoryTable">
+<thead>
+<tr>
+<th onclick="setInventorySort('material')">Material 🔽</th>
+<th onclick="setInventorySort('needed')">Benötigt 🔽</th>
+<th onclick="setInventorySort('delivered')">Geliefert 🔽</th>
+<th onclick="setInventorySort('missing')">Fehlt 🔽</th><th onclick="setInventorySort('station')">Station 🔽</th><th>Fertig</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</section>
+
+<section id="orders" class="card" style="display:none">
+<h3>Welche Station</h3>
+<input id="orderClient" placeholder="System">
+<input id="orderItem" placeholder="Name der Station">
+<button onclick="addOrder()">Eintragen</button>
+<table id="ordersTable">
+<thead><tr><th>System</th><th>Name der Station</th><th></th></tr></thead>
+<tbody></tbody>
+</table>
+</section>
+
+<section id="links" class="card" style="display:none">
+<h3>Links</h3>
+<input id="linkName" placeholder="Name">
+<input id="linkURL" placeholder="URL">
+<button onclick="addLink()">Link hinzufügen</button>
+<table id="linksTable">
+<thead><tr><th>Name</th><th>URL</th><th></th></tr></thead>
+<tbody></tbody>
+</table>
+</section>
+
+
+
+<section id="materials" class="card" style="display:none">
+
+<h3>Material Sammelorte</h3>
+
+<input id="matSystem" placeholder="System">
+
+<input id="matLocation" placeholder="Ort / Planet / Ring">
+
+<input id="matMaterial" placeholder="Material">
+
+<button onclick="addMaterial()">Hinzufügen</button>
+
+<table id="materialsTable">
+
+<thead>
+<tr>
+<th>System</th>
+<th>Ort</th>
+<th onclick="setInventorySort('material')">Material 🔽</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+
+</section>
+
+<section id="stations" class="card" style="display:none">
+
+<h3>Stationen</h3>
+
+<div id="stationAdmin" style="display:none">
+
+<input id="stationName" placeholder="Stationsname">
+<input id="stationSystem" placeholder="System">
+<input id="stationLocation" placeholder="Planet / Ring / Ort">
+<input id="stationSize" placeholder="Stations Größe">
+
+<select id="stationStatus">
+<option>Aktiv</option>
+<option>Im Bau</option>
+<option>Fertig</option>
+</select>
+
+<button onclick="addStation()">Station hinzufügen</button>
+
+</div>
+
+<table id="stationsTable">
+<thead>
+<tr>
+<th>Station</th>
+<th>System</th>
+<th>Standort</th>
+<th>Status</th>
+<th>Stations Größe</th>
+<th></th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</section>
+
+<section id="market" class="card" style="display:none">
+
+
+<h3>Warenmarkt</h3>
+
+<input id="marketSearch" placeholder="🔍 Nach Ware oder Station suchen..." onkeyup="filterMarket()">
+
+
+<div id="marketAdmin" style="display:none">
+
+<input id="marketItem" placeholder="Ware">
+<input id="marketPrice" type="number" placeholder="Preis">
+<input id="marketStock" type="number" placeholder="Bestand">
+
+<select id="marketStation"></select>
+
+<button onclick="addMarketItem()">Ware hinzufügen</button>
+
+<button onclick="exportMarketJson()">📥 JSON exportieren</button>
+<button onclick="importMarketJson()">📤 JSON importieren</button>
+
+
+</div>
+
+<table id="marketTable">
+<thead>
+<tr>
+<th>Ware</th>
+<th>Preis</th>
+<th>Bestand</th>
+<th>Station</th>
+<th></th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</section>
+
+<section id="chat" class="card" style="display:none">
+
+<h3>Chat</h3>
+
+<div id="chatBox" style="height:300px;overflow-y:auto;background:#000;padding:10px;border-radius:6px;"></div>
+
+<input id="chatMessage" placeholder="Nachricht schreiben...">
+<button onclick="sendMessage()">Senden</button>
+
+<button id="clearChatBtn" style="display:none" onclick="clearChat()">
+Chat löschen (Admin)
+</button>
+
+</section>
+
+
+<section id="engineer" class="card" style="display:none">
+
+<h3>Elite Dangerous Ingenieur Guide</h3>
+
+<iframe src="engineer.html" style="width:100%;height:900px;border:none;"></iframe>
+
+</section>
+
+
+
+<section id="donations" class="card" style="display:none">
+
+<h3>Spendenliste</h3>
+
+<div id="donationAdminPanel" style="display:none">
+
+
+<select id="donationWeek" onchange="updateDueDate()">
+<option value="">Woche auswählen</option>
+<option value="1">1 Woche</option>
+<option value="2">2 Wochen</option>
+<option value="3">3 Wochen</option>
+<option value="4">4 Wochen</option>
+<option value="5">5 Wochen</option>
+<option value="6">6 Wochen</option>
+<option value="7">7 Wochen</option>
+<option value="8">8 Wochen</option>
+</select>
+
+<input id="donationDueDate" type="date">
+
+
+
+<select id="donationPilot">
+<option value="">Pilot auswählen</option>
+</select>
+
+<input id="donationAmount" type="number" placeholder="Betrag">
+<input id="donationPurpose" placeholder="Verwendungszweck">
+<input id="donationConfirmed" placeholder="Bestätigt von">
+
+<button onclick="addDonation()">Spende hinzufügen</button>
+
+</div>
+
+<table id="donationTable">
+<thead>
+<tr>
+<th>Datum</th>
+<th>Pilot</th>
+<th>Betrag (CR)</th>
+<th>Zweck</th>
+<th>Fällig am</th>
+<th>Bestätigt</th>
+<th></th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</section>
+
+
+
+
+<section id="music" class="card" style="display:none">
+<h3>🎵 Musikcenter</h3>
+
+<h4>🚀 Staffel Musik (Strato)</h4>
+<div id="musicAdmin" style="display:none">
+<input id="musicTitle" placeholder="Titel">
+<input id="musicUrl" placeholder="MP3 Link (Strato)">
+<button onclick="addMusic()">Staffelmusik hinzufügen</button>
+</div>
+
+
+<div id="staffPlayerBox">
+<audio id="staffPlaylistPlayer"></audio>
+<div class="rr-player">
+<div class="rr-title" id="staffNowPlaying">Keine Staffelmusik ausgewählt</div>
+<div class="rr-controls">
+<button class="rr-btn" onclick="rrPrev('staff')">⏮</button>
+<button class="rr-btn" onclick="rrPlay('staff')">▶</button>
+<button class="rr-btn" onclick="rrPause('staff')">⏸</button>
+<button class="rr-btn" onclick="rrNext('staff')">⏭</button> 🔊 <input type="range" min="0" max="100" value="100" class="rr-volume" onchange="rrVolume('staff',this.value)"></div>
+<div class="rr-progress"><div class="rr-bar" id="staffBar"></div></div>
+</div></div>
+<table id="musicTable">
+
+<thead><tr><th>Titel</th><th>Player</th><th></th></tr></thead>
+<tbody></tbody>
+</table>
+
+<hr>
+
+<h4>👨‍🚀 Meine Musik (nur lokal)</h4>
+
+<input type="file" id="localMusicFile" accept=".mp3,audio/*" multiple>
+<button onclick="saveLocalMusic()">Lokal speichern</button>
+
+
+<audio id="localPlaylistPlayer"></audio>
+<div class="rr-player">
+<div class="rr-title" id="localNowPlaying">Keine lokale Musik ausgewählt</div>
+<div class="rr-controls">
+<button class="rr-btn" onclick="rrPrev('local')">⏮</button>
+<button class="rr-btn" onclick="rrPlay('local')">▶</button>
+<button class="rr-btn" onclick="rrPause('local')">⏸</button>
+<button class="rr-btn" onclick="rrNext('local')">⏭</button> 🔊 <input type="range" min="0" max="100" value="100" class="rr-volume" onchange="rrVolume('local',this.value)"></div>
+<div class="rr-progress"><div class="rr-bar" id="localBar"></div></div>
+</div>
+<table id="localMusicTable">
+
+<thead><tr><th>Datei</th><th>Player</th><th></th></tr></thead>
+<tbody></tbody>
+</table>
+
+</section>
+
+
+<section id="adminPanel" class="card" style="display:none">
+
+<h2 style="font-size:38px;">🛠 ADMIN PANEL</h2><p>Verwalte Oberkategorien und Inhalte</p>
+
+<h4>Startseite</h4>
+<input id="homeTitle" placeholder="Titel">
+<textarea id="homeText" placeholder="Text"></textarea>
+<button onclick="saveHomepage()">Speichern</button>
+
+<h4>News</h4>
+<input id="newsTitle" placeholder="Titel">
+<input id="newsText" placeholder="Text">
+<button onclick="addNews()">Speichern</button>
+
+
+
+
+
+
+<hr>
+
+<h4>💾 Backup & Restore</h4>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
+<button onclick="backupFirestore()">📥 Backup herunterladen</button>
+<button onclick="restoreFirestore()">📤 Backup einspielen</button>
+</div>
+
+
+<h4>Events</h4>
+<input id="eventTitle2" placeholder="Titel">
+<input id="eventDate2" type="date">
+<button onclick="addEventAdmin()">Speichern</button>
+
+</section>
+
+</main></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
+<script>
+
+async function backupFirestore(){
+
+const collections = [
+"staff","inventory","orders","links","materials",
+"events","roles","chat","donations","stations","market"
+];
+
+let backup = {};
+
+for(const name of collections){
+
+const snapshot = await db.collection(name).get();
+
+backup[name] = [];
+
+snapshot.forEach(doc=>{
+
+backup[name].push({
+id:doc.id,
+...doc.data()
+});
+
+});
+
+}
+
+const blob = new Blob(
+[JSON.stringify(backup,null,2)],
+{type:"application/json"}
+);
+
+const a = document.createElement("a");
+a.href = URL.createObjectURL(blob);
+a.download = "firebase-backup.json";
+a.click();
+
+}
+
+async function restoreFirestore(){
+
+const input = document.createElement("input");
+
+input.type = "file";
+input.accept = ".json";
+
+input.onchange = async e => {
+
+const file = e.target.files[0];
+
+const text = await file.text();
+
+const data = JSON.parse(text);
+
+for(const collection in data){
+
+for(const doc of data[collection]){
+
+const id = doc.id;
+
+delete doc.id;
+
+await db.collection(collection)
+.doc(id)
+.set(doc);
+
+}
+
+}
+
+alert("Restore fertig");
+
+};
+
+input.click();
+
+}
+
+</script>
+
+<script>
+
+const firebaseConfig={
+apiKey: "AIzaSyAIGP9jBcFtGoPXMsz2Jm8sxNhYm6d1-sA",
+authDomain: "roadrunner-runaway-86d6e.firebaseapp.com",
+projectId: "roadrunner-runaway-86d6e",
+storageBucket: "roadrunner-runaway-86d6e.firebasestorage.app",
+messagingSenderId: "535598462149",
+appId: "1:535598462149:web:8d72337fdc394b2a52acac"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db=firebase.firestore();
+const auth = firebase.auth();
+
+let currentRole="";
+
+loginBtn.onclick = async function(){
+
+const email = username.value.trim();
+const passwordInput = password.value.trim();
+
+try{
+
+const userCredential = await auth.signInWithEmailAndPassword(email, passwordInput);
+const user = userCredential.user;
+
+const doc = await db.collection("roles").doc(user.email).get();
+
+if(doc.exists){
+currentRole = doc.data().role;
+}else{
+currentRole = "pilot";
+}
+
+console.log("ROLE:", currentRole);
+document.getElementById("pilotSidebar").style.display="block";
+
+if(currentRole==="admin"){
+document.getElementById("adminNav").style.display="inline-block";
+document.getElementById("adminSidebar").style.display="block";
+}
+
+if(currentRole === "admin"){
+ document.getElementById("backupBtn").style.display="inline-block";
+ document.getElementById("restoreBtn").style.display="inline-block";
+ document.getElementById("clearChatBtn").style.display="inline-block";
+ document.getElementById("donationAdminPanel").style.display="block";
+document.getElementById("stationAdmin").style.display="block";
+document.getElementById("marketAdmin").style.display="block";
+ document.getElementById("musicAdmin").style.display="block";
+}
+
+loginCard.style.display="none";
+dashboard.style.display="block";
+
+loadAll();
+
+}catch(err){
+
+console.log(err);
+error.innerText = err.message;
+
+}
+
+}
+
+function logout(){location.reload()}
+
+function show(id){
+["stats","staff","inventory","orders","links","materials","stations","market","engineer","chat","donations","music","adminPanel"].forEach(s=>{
+document.getElementById(s).style.display=(s===id)?"block":"none"
+})
+}
+
+/* STAFF */
+
+function loadStaff(){
+db.collection("staff").onSnapshot(s=>{
+
+staffTable.querySelector("tbody").innerHTML="";
+statStaff.innerText=s.size;
+
+s.forEach(doc=>{
+
+const d=doc.data();
+      staffPlaylist.push(d.url);
+
+const tr=document.createElement("tr");
+let btn="";
+if(currentRole==="admin"){
+btn=`<button onclick="deleteStaff('${doc.id}')">Löschen</button>`;
+}
+tr.innerHTML=`<td>${d.name}</td><td>${btn}</td>`;
+staffTable.querySelector("tbody").appendChild(tr);
+
+});
+
+});
+}
+
+function addStaff(){
+if(!staffName.value) return;
+db.collection("staff").add({name:staffName.value});
+}
+
+/* INVENTORY SYSTEM */
+
+function addNeededMaterial(){
+
+if(currentRole !== "admin"){
+alert("Nur Admin darf Material planen");
+return;
+}
+
+db.collection("inventory").add({
+material: adminMaterial.value,
+needed: Number(adminNeeded.value),
+delivered: 0,
+stationId: document.getElementById("stationSelect")?.value || null
+});
+
+}
+
+
+function deliverDelivery(){
+
+const selectedId =
+document.getElementById("deliverSelect").value;
+
+const amount =
+Number(document.getElementById("deliverAmount").value);
+
+if(!selectedId || !amount){
+alert("Bitte Material und Menge auswählen");
+return;
+}
+
+db.collection("inventory")
+.doc(selectedId)
+.get()
+.then(doc=>{
+
+if(!doc.exists) return;
+
+const data = doc.data();
+
+
+
+const newDelivered =
+Number(data.delivered || 0) + amount;
+
+if(newDelivered >= Number(data.needed || 0)){
+
+db.collection("inventory")
+.doc(selectedId)
+.delete();
+
+}else{
+
+db.collection("inventory")
+.doc(selectedId)
+.update({
+delivered:newDelivered
+});
+
+}
+
+});
+
+}
+
+function sortInventory(docs){
+docs.sort((a,b)=>{
+
+const da=a.data();
+const db=b.data();
+
+if(inventorySortField==="needed"){
+return (Number(da.needed||0)-Number(db.needed||0))*inventorySortDir;
+}
+
+if(inventorySortField==="delivered"){
+return (Number(da.delivered||0)-Number(db.delivered||0))*inventorySortDir;
+}
+
+if(inventorySortField==="missing"){
+const ma=Number(da.needed||0)-Number(da.delivered||0);
+const mb=Number(db.needed||0)-Number(db.delivered||0);
+return (ma-mb)*inventorySortDir;
+}
+
+if(inventorySortField==="station"){
+const stationA = getStationName(da.stationId);
+const stationB = getStationName(db.stationId);
+return stationA.localeCompare(stationB,'de',{sensitivity:'base'}) * inventorySortDir;
+}
+
+return String(da.material||"").localeCompare(
+String(db.material||"")
+)*inventorySortDir;
+
+});
+}
+
+function setInventorySort(field){
+  if(inventorySortField === field){
+    inventorySortDir *= -1;
+  }else{
+    inventorySortField = field;
+    inventorySortDir = 1;
+  }
+  loadInventory();
+}
+
+
+function updateStationProgress(snapshot){
+
+const container = document.getElementById("stationProgressContainer");
+if(!container) return;
+
+container.innerHTML = "";
+
+let stations = {};
+
+snapshot.forEach(doc=>{
+  const d = doc.data();
+  const station = d.stationId || "global";
+
+  if(!stations[station]){
+    stations[station] = {needed:0, delivered:0};
+  }
+
+  stations[station].needed += Number(d.needed) || 0;
+  stations[station].delivered += Number(d.delivered) || 0;
+});
+
+for(const stationId in stations){
+
+  const data = stations[stationId];
+
+  let percent = 0;
+  if(data.needed > 0){
+    percent = Math.floor((data.delivered / data.needed) * 100);
+  }
+
+  percent = Math.min(100, percent);
+
+  const name = getStationName(stationId);
+
+  const div = document.createElement("div");
+  div.style.marginBottom = "10px";
+
+  div.innerHTML = `
+    <div style="margin-bottom:4px;">${name}</div>
+    <div style="background:rgba(255,255,255,0.05);
+backdrop-filter:blur(8px);
+border:1px solid rgba(255,122,0,0.3);
+border-radius:6px;
+overflow:hidden;">
+      <div style="
+        width:${percent}%;
+        background:${percent>=100 ? '#4caf50' : '#c9a06b'};
+        padding:6px;
+        text-align:center;
+      ">
+        ${percent}%
+      </div>
+    </div>
+  `;
+
+  container.appendChild(div);
+}
+}
+
+function loadInventory(){
+
+db.collection("inventory").onSnapshot(snapshot=>{
+updateStationProgress(snapshot);
+
+statInventory.innerText = snapshot.size; // 
+
+const tbody = document.querySelector("#inventoryTable tbody");
+tbody.innerHTML="";
+
+deliverSelect.innerHTML="";
+
+
+const docs = [];
+snapshot.forEach(doc => docs.push(doc));
+sortInventory(docs);
+docs.forEach(doc=>{
+
+
+const data = doc.data();
+const missing = data.needed - data.delivered;
+
+let highlight = "";
+if(missing > 50){
+  highlight = "style='color:red;font-weight:bold;'";
+}else if(missing > 20){
+  highlight = "style='color:orange;'";
+}
+
+const tr = document.createElement("tr");
+
+let button="";
+if(currentRole==="admin"){
+button=`<button onclick="finishInventory('${doc.id}')">Fertig</button>`;
+}
+tr.innerHTML = `
+<td>${data.material}</td>
+<td>${data.needed}</td>
+<td>${data.delivered}</td>
+<td ${highlight}>${missing}</td>
+<td>${getStationName(data.stationId)}</td>
+<td>${button}</td>
+`;
+tbody.appendChild(tr);
+const opt = document.createElement("option");
+opt.value = doc.id;
+opt.text =
+data.material + " → " +
+getStationName(data.stationId);
+
+deliverSelect.add(opt);
+
+});
+
+});
+
+}
+
+/* ORDERS */
+
+function loadOrders(){
+db.collection("orders").onSnapshot(s=>{
+
+ordersTable.querySelector("tbody").innerHTML="";
+statOrders.innerText=s.size;
+
+s.forEach(doc=>{
+
+const d=doc.data();
+
+const tr=document.createElement("tr");
+let btn="";
+if(currentRole==="admin"){
+btn=`<button onclick="deleteOrder('${doc.id}')">Erledigt</button>`;
+}
+tr.innerHTML=`
+<td>${d.client}</td>
+<td>${d.item}</td>
+<td>${btn}</td>`;
+
+ordersTable.querySelector("tbody").appendChild(tr);
+
+});
+
+});
+}
+
+function addOrder(){
+db.collection("orders").add({
+client:orderClient.value,
+item:orderItem.value
+});
+}
+
+/* LINKS */
+
+function loadLinks(){
+db.collection("links").onSnapshot(s=>{
+
+linksTable.querySelector("tbody").innerHTML="";
+statLinks.innerText=s.size;
+
+s.forEach(doc=>{
+
+const d=doc.data();
+
+const tr=document.createElement("tr");
+let btn="";
+if(currentRole==="admin"){
+btn=`<button onclick="deleteLink('${doc.id}')">Löschen</button>`;
+}
+tr.innerHTML=`
+<td>${d.name}</td>
+<td><a href="${d.url}" target="_blank">${d.url}</a></td>
+<td>${btn}</td>`;
+
+linksTable.querySelector("tbody").appendChild(tr);
+
+});
+
+});
+}
+
+function addLink(){
+db.collection("links").add({
+name:linkName.value,
+url:linkURL.value
+});
+}
+
+function deleteStaff(id){
+if(currentRole!=="admin"){alert("Nur Admin");return;}
+db.collection("staff").doc(id).delete();
+}
+
+function deleteOrder(id){
+if(currentRole!=="admin"){alert("Nur Admin");return;}
+db.collection("orders").doc(id).delete();
+}
+
+function deleteLink(id){
+if(currentRole!=="admin"){alert("Nur Admin");return;}
+db.collection("links").doc(id).delete();
+}
+
+function finishInventory(id){
+if(currentRole!=="admin"){alert("Nur Admin");return;}
+db.collection("inventory").doc(id).delete();
+}
+
+/* MATERIAL ORTE */
+
+function addMaterial(){
+
+db.collection("materials").add({
+
+system: matSystem.value,
+location: matLocation.value,
+material: matMaterial.value
+
+});
+
+}
+
+function deleteMaterial(id){
+
+if(currentRole!=="admin"){
+alert("Nur Admin darf löschen");
+return;
+}
+
+db.collection("materials").doc(id).delete();
+
+}
+
+function loadMaterials(){
+
+db.collection("materials").onSnapshot(snapshot=>{
+
+const tbody=document.querySelector("#materialsTable tbody");
+
+tbody.innerHTML="";
+
+
+const docs = [];
+snapshot.forEach(doc => docs.push(doc));
+docs.forEach(doc=>{
+
+
+const d=doc.data();
+
+let btn="";
+
+if(currentRole==="admin"){
+btn=`<button onclick="deleteMaterial('${doc.id}')">Löschen</button>`;
+}
+
+const tr=document.createElement("tr");
+
+tr.innerHTML=`
+<td>${d.system}</td>
+<td>${d.location}</td>
+<td>${d.material}</td>
+<td>${btn}</td>
+`;
+
+tbody.appendChild(tr);
+
+});
+
+});
+
+}
+
+/* EVENTS */
+
+function addEvent(){
+
+if(currentRole !== "admin"){
+alert("Nur Admin darf Events erstellen");
+return;
+}
+
+db.collection("events").add({
+title: eventTitle.value,
+date: eventDate.value,
+system: eventSystem.value
+});
+
+}
+
+function deleteEvent(id){
+
+if(currentRole !== "admin"){
+alert("Nur Admin");
+return;
+}
+
+db.collection("events").doc(id).delete();
+
+}
+
+function loadEvents(){
+
+db.collection("events").onSnapshot(snapshot=>{
+
+const tbody=document.querySelector("#eventsTable tbody");
+
+tbody.innerHTML="";
+
+
+const docs = [];
+snapshot.forEach(doc => docs.push(doc));
+docs.forEach(doc=>{
+
+
+const d=doc.data();
+
+let btn="";
+
+if(currentRole==="admin"){
+btn=`<button onclick="deleteEvent('${doc.id}')">Löschen</button>`;
+}
+
+const tr=document.createElement("tr");
+
+tr.innerHTML=`
+<td>${d.title}</td>
+<td>${d.date}</td>
+<td>${d.system}</td>
+<td>${btn}</td>
+`;
+
+tbody.appendChild(tr);
+
+});
+
+});
+
+}
+
+
+let stationCache = {};
+
+let inventorySortField = "material";
+let inventorySortDir = 1;
+
+function loadStationCache(){
+  db.collection("orders").onSnapshot(snapshot=>{
+    stationCache = {};
+    
+const docs = [];
+snapshot.forEach(doc => docs.push(doc));
+docs.forEach(doc=>{
+
+      const d = doc.data();
+      stationCache[doc.id] = d.item + " (" + d.client + ")";
+    });
+  });
+}
+
+function getStationName(id){
+  if(!id) return "Global";
+  return stationCache[id] || "Lädt...";
+}
+
+function loadStationSelect(){
+  const select = document.getElementById("stationSelect");
+  if(!select) return;
+
+  db.collection("orders").get().then(snapshot=>{
+    select.innerHTML="";
+    
+const docs = [];
+snapshot.forEach(doc => docs.push(doc));
+docs.forEach(doc=>{
+
+      const d = doc.data();
+      const opt = document.createElement("option");
+      opt.value = doc.id;
+      opt.text = d.item + " (" + d.client + ")";
+      select.add(opt);
+    });
+  });
+}
+
+function loadAll(){
+
+/* SPARK OPTIMIZED */
+
+loadStationCache();
+loadStationSelect();
+loadDeliveryStations();
+
+/* only essential realtime */
+
+loadInventory();
+loadEvents();
+
+/* static homepage */
+
+loadDonationPilots();
+
+}
+
+
+function sendMessage(){
+
+if(!chatMessage.value) return;
+
+db.collection("chat").add({
+user: auth.currentUser.email,
+text: chatMessage.value,
+time: new Date().toISOString()
+});
+
+chatMessage.value = "";
+
+}
+
+function loadChat(){
+
+db.collection("chat")
+.orderBy("time")
+.onSnapshot(snapshot=>{
+
+const box = document.getElementById("chatBox");
+box.innerHTML="";
+
+
+const docs = [];
+snapshot.forEach(doc => docs.push(doc));
+docs.forEach(doc=>{
+
+
+const d = doc.data();
+
+const div = document.createElement("div");
+
+div.innerHTML = `<b>${d.user}</b>: ${d.text}`;
+
+box.appendChild(div);
+
+});
+
+box.scrollTop = box.scrollHeight;
+
+});
+
+}
+
+async function clearChat(){
+
+if(currentRole !== "admin"){
+alert("Nur Admin darf das!");
+return;
+}
+
+if(!confirm("Chat wirklich löschen?")) return;
+
+const snapshot = await db.collection("chat").get();
+
+const batch = db.batch();
+
+
+const docs = [];
+snapshot.forEach(doc => docs.push(doc));
+docs.forEach(doc=>{
+
+batch.delete(doc.ref);
+});
+
+await batch.commit();
+
+alert("Chat gelöscht");
+
+}
+
+
+
+
+/* DONATIONS */
+
+
+function updateDueDate(){
+
+const weeks = Number(document.getElementById("donationWeek").value || 0);
+
+if(!weeks) return;
+
+const now = new Date();
+
+now.setDate(now.getDate() + (weeks * 7));
+
+const formatted = now.toISOString().split("T")[0];
+
+document.getElementById("donationDueDate").value = formatted;
+
+}
+
+
+function loadDonationPilots(){
+
+const select = document.getElementById("donationPilot");
+
+if(!select) return;
+
+db.collection("staff").get().then(snapshot=>{
+
+select.innerHTML = '<option value="">Pilot auswählen</option>';
+
+snapshot.forEach(doc=>{
+
+const d = doc.data();
+
+const opt = document.createElement("option");
+
+opt.value = d.name;
+opt.text = d.name;
+
+select.appendChild(opt);
+
+});
+
+});
+
+}
+
+
+function addDonation(){
+
+if(currentRole !== "admin"){
+alert("Nur Admin darf Spenden verwalten");
+return;
+}
+
+db.collection("donations").add({
+date: new Date().toLocaleDateString("de-DE"),
+pilot: donationPilot.value,
+amount: Number(donationAmount.value),
+purpose: donationPurpose.value,
+dueDate: donationDueDate.value,
+confirmed: donationConfirmed.value
+});
+
+donationPilot.value = "";
+donationAmount.value = "";
+donationPurpose.value = "";
+donationDueDate.value = "";
+donationConfirmed.value = "";
+
+}
+
+function deleteDonation(id){
+
+if(currentRole !== "admin"){
+alert("Nur Admin darf löschen");
+return;
+}
+
+db.collection("donations").doc(id).delete();
+
+}
+
+function loadDonations(){
+
+db.collection("donations").onSnapshot(snapshot=>{
+
+const tbody = document.querySelector("#donationTable tbody");
+
+if(!tbody) return;
+
+tbody.innerHTML = "";
+
+const docs = [];
+
+snapshot.forEach(doc => docs.push(doc));
+
+docs.sort((a,b)=>{
+return (b.data().date || "").localeCompare(a.data().date || "");
+});
+
+docs.forEach(doc=>{
+
+const d = doc.data();
+
+let button = "";
+
+if(currentRole === "admin"){
+button = `<button onclick="deleteDonation('${doc.id}')">Löschen</button>`;
+}
+
+const tr = document.createElement("tr");
+
+tr.innerHTML = `
+<td>${d.date || ""}</td>
+<td>${d.pilot || ""}</td>
+<td>${Number(d.amount || 0).toLocaleString("de-DE")}</td>
+<td>${d.purpose || ""}</td>
+<td>${d.dueDate || ""}</td>
+<td>${d.confirmed || ""}</td>
+<td>${button}</td>
+`;
+
+tbody.appendChild(tr);
+
+});
+
+});
+
+}
+
+
+
+/* STATIONS */
+
+function addStation(){
+
+if(currentRole !== "admin"){
+alert("Nur Admin");
+return;
+}
+
+db.collection("stations").add({
+name: stationName.value,
+system: stationSystem.value,
+location: stationLocation.value,
+size: stationSize.value,
+status: stationStatus.value
+});
+
+}
+
+function deleteStation(id){
+
+if(currentRole !== "admin") return;
+
+db.collection("stations").doc(id).delete();
+
+}
+
+function loadStations(){
+
+db.collection("stations").onSnapshot(snapshot=>{
+
+const tbody = document.querySelector("#stationsTable tbody");
+
+if(!tbody) return;
+
+tbody.innerHTML = "";
+
+const marketSelect = document.getElementById("marketStation");
+
+if(marketSelect){
+marketSelect.innerHTML = "";
+}
+
+snapshot.forEach(doc=>{
+
+const d = doc.data();
+
+let btn = "";
+
+if(currentRole === "admin"){
+btn = `<button onclick="deleteStation('${doc.id}')">Löschen</button>`;
+}
+
+const tr = document.createElement("tr");
+
+tr.innerHTML = `
+<td>${d.name}</td>
+<td>${d.system}</td>
+<td>${d.location}</td>
+<td>${d.status}</td>
+<td>${d.size}</td>
+<td>${btn}</td>
+`;
+
+tbody.appendChild(tr);
+
+if(marketSelect){
+const opt = document.createElement("option");
+opt.value = d.name;
+opt.text = d.name;
+marketSelect.add(opt);
+}
+
+});
+
+});
+
+}
+
+/* MARKET */
+
+function addMarketItem(){
+
+if(currentRole !== "admin"){
+alert("Nur Admin");
+return;
+}
+
+db.collection("market").add({
+item: marketItem.value,
+price: Number(marketPrice.value || 0),
+stock: Number(marketStock.value || 0),
+station: marketStation.value
+});
+
+}
+
+function deleteMarketItem(id){
+
+if(currentRole !== "admin") return;
+
+db.collection("market").doc(id).delete();
+
+}
+
+function loadMarket(){
+
+db.collection("market").onSnapshot(snapshot=>{
+
+const tbody = document.querySelector("#marketTable tbody");
+
+if(!tbody) return;
+
+tbody.innerHTML = "";
+
+snapshot.forEach(doc=>{
+
+const d = doc.data();
+
+let btn = "";
+
+if(currentRole === "admin"){
+btn = `<button onclick="deleteMarketItem('${doc.id}')">Löschen</button>`;
+}
+
+const tr = document.createElement("tr");
+
+tr.innerHTML = `
+<td>${d.item}</td>
+<td>${(Number(d.price)||0).toLocaleString('de-DE')} CR</td>
+<td>${d.stock}</td>
+<td>${d.station}</td>
+<td>${btn}</td>
+`;
+
+tbody.appendChild(tr);
+
+});
+
+});
+
+}
+
+
+
+
+
+/* KATEGORIEN ADMIN */
+
+async function addCategory(){
+
+if(currentRole !== "admin"){
+alert("Nur Admin");
+return;
+}
+
+const name =
+document.getElementById("newCategoryName").value;
+
+if(!name) return;
+
+await db.collection("categories").add({
+name:name
+});
+
+document.getElementById("newCategoryName").value = "";
+
+}
+
+async function deleteCategory(id){
+
+if(currentRole !== "admin") return;
+
+await db.collection("categories")
+.doc(id)
+.delete();
+
+}
+
+function loadCategories(){
+
+db.collection("categories")
+.onSnapshot(snapshot=>{
+
+const tbody =
+document.querySelector("#categoryTable tbody");
+
+if(tbody){
+tbody.innerHTML = "";
+}
+
+const nav =
+document.getElementById("dynamicNav");
+
+snapshot.forEach(doc=>{
+
+const d = doc.data();
+
+if(tbody){
+
+const tr =
+document.createElement("tr");
+
+tr.innerHTML = `
+<td>${d.name}</td>
+<td>
+<button onclick="deleteCategory('${doc.id}')">
+Löschen
+</button>
+</td>
+`;
+
+tbody.appendChild(tr);
+
+}
+
+if(nav){
+
+const exists = [...nav.querySelectorAll("a")]
+.find(a=>a.innerText===d.name);
+
+if(!exists){
+
+const a =
+document.createElement("a");
+
+a.innerText = d.name;
+a.href = "#";
+
+nav.appendChild(a);
+
+}
+
+}
+
+});
+
+});
+
+}
+
+
+
+function loadDeliveryStations(){
+
+const select =
+document.getElementById("deliveryStationSelect");
+
+if(!select) return;
+
+select.innerHTML =
+'<option value="">🏛 Station auswählen</option>';
+
+db.collection("orders").onSnapshot(snapshot=>{
+
+snapshot.forEach(doc=>{
+
+const d = doc.data();
+
+const option =
+document.createElement("option");
+
+option.value = d.item || doc.id;
+
+option.innerText =
+(d.item || "Station")
++ " (" +
+(d.client || "System")
++ ")";
+
+select.appendChild(option);
+
+});
+
+});
+
+}
+
+
+/* MUSIC CENTER */
+
+function addMusic(){
+ if(currentRole!=="admin") return;
+ db.collection("music").add({
+   title: musicTitle.value,
+   url: musicUrl.value
+ });
+}
+
+function deleteMusic(id){
+ if(currentRole!=="admin") return;
+ db.collection("music").doc(id).delete();
+}
+
+function loadMusic(){
+ db.collection("music").onSnapshot(snapshot=>{
+   const tbody=document.querySelector("#musicTable tbody");
+   if(!tbody) return;
+   tbody.innerHTML="";
+   staffPlaylist=[];
+   snapshot.forEach(doc=>{
+      const d=doc.data();
+      let btn="";
+      if(currentRole==="admin"){
+        btn=`<button onclick="deleteMusic('${doc.id}')">Löschen</button>`;
+      }
+      staffPlaylist.push(d.url);
+
+      if(staffPlaylist.length===1){
+        document.getElementById('staffPlaylistPlayer').src=d.url;
+      }
+
+      const tr=document.createElement("tr");
+      tr.innerHTML=`
+      <td>${d.title||""}</td>
+      <td>
+      <button onclick="playStaffTrack('${d.url}')">▶ Abspielen</button>
+      </td>
+      <td>${btn}</td>`;
+      tbody.appendChild(tr);
+   });
+ });
+}
+
+
+/* LOCAL PILOT MUSIC */
+
+let rrMusicDB=null;
+
+function initMusicDB(){
+ return new Promise((resolve,reject)=>{
+   const req=indexedDB.open("RR_LocalMusic",1);
+   req.onupgradeneeded=(e)=>{
+      const db=e.target.result;
+      if(!db.objectStoreNames.contains("tracks")){
+        db.createObjectStore("tracks",{keyPath:"id",autoIncrement:true});
+      }
+   };
+   req.onsuccess=(e)=>{ rrMusicDB=e.target.result; resolve(); };
+   req.onerror=()=>reject(req.error);
+ });
+}
+
+async function saveLocalMusic(){
+ if(!rrMusicDB) await initMusicDB();
+ const files=document.getElementById('localMusicFile').files;
+ if(!files || !files.length) return;
+
+ const user=(auth.currentUser?.email||"guest");
+
+ for(const file of files){
+   const reader=new FileReader();
+   await new Promise(res=>{
+      reader.onload=(e)=>{
+        const tx=rrMusicDB.transaction(["tracks"],"readwrite");
+        tx.objectStore("tracks").add({
+          user:user,
+          name:file.name,
+          data:e.target.result,
+          created:Date.now()
+        });
+        tx.oncomplete=()=>res();
+      };
+      reader.readAsDataURL(file);
+   });
+ }
+ loadLocalMusic();
+}
+
+async function loadLocalMusic(){
+ if(!rrMusicDB) await initMusicDB();
+ const tbody=document.querySelector('#localMusicTable tbody');
+ if(!tbody) return;
+ tbody.innerHTML='';
+ localPlaylist=[];
+
+ const user=(auth.currentUser?.email||"guest");
+ const tx=rrMusicDB.transaction(["tracks"],"readonly");
+ const req=tx.objectStore("tracks").getAll();
+
+ req.onsuccess=()=>{
+   req.result
+    .filter(x=>x.user===user)
+    .sort((a,b)=>a.created-b.created)
+    .forEach(m=>{
+      localPlaylist.push(m.data);
+      const tr=document.createElement('tr');
+      tr.innerHTML=`
+      <td>${m.name}</td>
+      <td><button onclick="playLocalTrack('${m.data}')">▶ Abspielen</button></td>
+      <td><button onclick="deleteLocalMusic(${m.id})">Löschen</button></td>`;
+      tbody.appendChild(tr);
+    });
+ };
+}
+
+async function deleteLocalMusic(id){
+ if(!rrMusicDB) await initMusicDB();
+ const tx=rrMusicDB.transaction(["tracks"],"readwrite");
+ tx.objectStore("tracks").delete(id);
+ tx.oncomplete=()=>loadLocalMusic();
+}
+
+/* PLAYLIST SUPPORT */
+
+let staffPlaylist=[];
+let localPlaylist=[];
+let staffIndex=0;
+let localIndex=0;
+
+function playStaffTrack(url){
+ const p=document.getElementById('staffPlaylistPlayer');
+ p.src=url;
+ document.getElementById('staffNowPlaying').innerText=url.split('/').pop();
+ p.play();
+}
+
+function playLocalTrack(url){
+ const p=document.getElementById('localPlaylistPlayer');
+ p.src=url;
+ document.getElementById('localNowPlaying').innerText='Lokale Musik';
+ p.play();
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+
+ const sp=document.getElementById('staffPlaylistPlayer');
+ if(sp){
+  sp.addEventListener('ended',()=>{
+   rrNext('staff');
+  });
+ }
+
+ const lp=document.getElementById('localPlaylistPlayer');
+ if(lp){
+  lp.addEventListener('ended',()=>{
+   rrNext('local');
+  });
+ }
+
+});
+
+
+function rrPlay(type){
+ const p=document.getElementById(type==='staff'?'staffPlaylistPlayer':'localPlaylistPlayer');
+ if(p) p.play();
+}
+
+function rrVolume(type,value){
+ const p=document.getElementById(type==='staff'?'staffPlaylistPlayer':'localPlaylistPlayer');
+ if(p) p.volume=value/100;
+}
+
+function rrPause(type){
+ const p=document.getElementById(type==='staff'?'staffPlaylistPlayer':'localPlaylistPlayer');
+ if(p) p.pause();
+}
+
+function rrNext(type){
+ const player=document.getElementById(type==='staff'?'staffPlaylistPlayer':'localPlaylistPlayer');
+ const playlist=type==='staff'?staffPlaylist:localPlaylist;
+ if(!playlist.length) return;
+
+ if(type==='staff'){
+   staffIndex=(staffIndex+1)%playlist.length;
+   player.src=playlist[staffIndex];
+ }else{
+   localIndex=(localIndex+1)%playlist.length;
+   player.src=playlist[localIndex];
+ }
+ player.play();
+}
+
+function rrPrev(type){
+ const player=document.getElementById(type==='staff'?'staffPlaylistPlayer':'localPlaylistPlayer');
+ const playlist=type==='staff'?staffPlaylist:localPlaylist;
+ if(!playlist.length) return;
+
+ if(type==='staff'){
+   staffIndex=(staffIndex-1+playlist.length)%playlist.length;
+   player.src=playlist[staffIndex];
+ }else{
+   localIndex=(localIndex-1+playlist.length)%playlist.length;
+   player.src=playlist[localIndex];
+ }
+ player.play();
+}
+
+setInterval(()=>{
+ const sp=document.getElementById('staffPlaylistPlayer');
+ const sb=document.getElementById('staffBar');
+ if(sp&&sb&&sp.duration) sb.style.width=((sp.currentTime/sp.duration)*100)+'%';
+ const lp=document.getElementById('localPlaylistPlayer');
+ const lb=document.getElementById('localBar');
+ if(lp&&lb&&lp.duration) lb.style.width=((lp.currentTime/lp.duration)*100)+'%';
+},500);
+
+
+async function exportMarketJson(){
+ const snapshot = await db.collection("market").get();
+ const data = [];
+ snapshot.forEach(doc=>{
+   data.push({id:doc.id,...doc.data()});
+ });
+ const blob = new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download="market.json";
+ a.click();
+}
+
+function importMarketJson(){
+ const input=document.createElement("input");
+ input.type="file";
+ input.accept=".json";
+
+ input.onchange = async (e)=>{
+   const file=e.target.files[0];
+   if(!file) return;
+
+   const text=await file.text();
+   const data=JSON.parse(text);
+
+   for(const item of data){
+      const copy={...item};
+      delete copy.id;
+      await db.collection("market").add(copy);
+   }
+
+   alert("Waren erfolgreich importiert.");
+ };
+
+ input.click();
+}
+
+
+// PUBLIC STARTSEITE
+function loadHero(){
+db.collection("settings").doc("homepage").get().then(doc=>{
+if(!doc.exists) return;
+const d = doc.data();
+heroTitle.innerText = d.title || "";
+heroText.innerText = d.text || "";
+});
+}
+
+function loadNews(){
+db.collection("news").get().then(snapshot=>{
+newsList.innerHTML="";
+snapshot.forEach(doc=>{
+const d = doc.data();
+newsList.innerHTML += `<div><b>${d.title}</b><br>${d.text}<hr></div>`;
+});
+});
+}
+
+function loadEventsHomepage(){
+db.collection("events").get().then(snapshot=>{
+eventList.innerHTML="";
+snapshot.forEach(doc=>{
+const d = doc.data();
+eventList.innerHTML += `<div><b>${d.title}</b> - ${d.date}<hr></div>`;
+});
+});
+}
+
+// ADMIN
+function saveHomepage(){
+db.collection("settings").doc("homepage").set({
+title: homeTitle.value,
+text: homeText.value
+});
+}
+
+function addNews(){
+db.collection("news").add({
+title: newsTitle.value,
+text: newsText.value
+});
+}
+
+function addEventAdmin(){
+db.collection("events").add({
+title: eventTitle2.value,
+date: eventDate2.value
+});
+}
+
+loadHero();
+loadNews();
+loadEventsHomepage();
+
+</script>
+
+
+<script>
+if("serviceWorker" in navigator){
+
+window.addEventListener("load", ()=>{
+
+navigator.serviceWorker
+.register("./service-worker.js")
+.then(()=>console.log("Service Worker registriert"))
+.catch(err=>console.log(err));
+
+});
+
+}
+</script>
+
+
+
+<style>
+#deliveryStationSelect{
+display:none !important;
+}
+</style>
+
+<script>
+document.addEventListener("change", function(e){
+
+if(e.target && e.target.id === "deliverSelect"){
+
+const selected =
+e.target.options[e.target.selectedIndex];
+
+if(!selected) return;
+
+const text = selected.text || "";
+
+const match = text.match(/→\s*(.*)$/);
+
+if(match){
+
+const station = match[1].trim();
+
+const hiddenSelect =
+document.getElementById("deliveryStationSelect");
+
+if(hiddenSelect){
+
+for(let i=0;i<hiddenSelect.options.length;i++){
+
+const opt = hiddenSelect.options[i];
+
+if(opt.text.includes(station)){
+hiddenSelect.value = opt.value;
+break;
+}
+
+}
+
+}
+
+}
+
+}
+
+});
+</script>
+
+
+
+<script id="SPARK_OPTIMIZATION">
+
+/* FIREBASE SPARK OPTIMIZATION */
+
+const loadedSections = {};
+
+function lazyLoadSection(id){
+
+if(loadedSections[id]) return;
+
+loadedSections[id] = true;
+
+switch(id){
+
+case "chat":
+loadChat();
+break;
+
+case "inventory":
+loadInventory();
+break;
+
+case "staff":
+loadStaff();
+break;
+
+case "orders":
+loadOrders();
+break;
+
+case "links":
+loadLinks();
+break;
+
+case "materials":
+loadMaterials();
+break;
+
+case "stations":
+loadStations();
+break;
+
+case "market":
+loadMarket();
+break;
+
+case "donations":
+loadDonations();
+break;
+
+case "music":
+loadMusic();
+loadLocalMusic();
+break;
+
+case "adminPanel":
+loadCategories();
+break;
+
+}
+
+}
+
+/* optimized show */
+
+const originalShow = show;
+
+show = function(id){
+
+originalShow(id);
+
+lazyLoadSection(id);
+
+};
+
+</script>
+
+<script>
+/* GLOBAL ENTER SUPPORT */
+document.addEventListener("keydown", function(e){
+
+if(e.key !== "Enter") return;
+
+const active = document.activeElement;
+if(!active) return;
+
+switch(active.id){
+
+case "staffName":
+addStaff();
+break;
+
+case "orderItem":
+addOrder();
+break;
+
+case "linkURL":
+addLink();
+break;
+
+case "matMaterial":
+addMaterial();
+break;
+
+case "marketStock":
+if(typeof addMarketItem==="function") addMarketItem();
+break;
+
+case "chatMessage":
+sendMessage();
+break;
+
+case "musicUrl":
+if(typeof addMusic==="function") addMusic();
+break;
+
+}
+
+});
+</script>
+<script>
+function filterMarket(){
+
+ const search = document.getElementById("marketSearch").value.toLowerCase();
+
+ const rows = document.querySelectorAll("#marketTable tbody tr");
+
+ rows.forEach(row=>{
+   row.style.display =
+   row.innerText.toLowerCase().includes(search) ? "" : "none";
+ });
+
+}
+</script>
+
+<script>
+function openInara(){
+    window.open('https://inara.cz','_blank');
+}
+</script>
+<script>
+
+function pickRandomStation(){
+
+  db.collection("inventory").get().then(snapshot=>{
+
+    const entries = [];
+
+    snapshot.forEach(doc=>{
+
+      const d = doc.data();
+      const missing = Number(d.needed||0) - Number(d.delivered||0);
+
+      if(missing > 0){
+        entries.push({
+          material:d.material || "Unbekannt",
+          stationId:d.stationId || "",
+          missing:missing
+        });
+      }
+
+    });
+
+    if(entries.length===0){
+      document.getElementById("randomStationResult").innerHTML =
+      "✅ Keine offenen Materialien vorhanden.";
+      return;
+    }
+
+    const random = entries[Math.floor(Math.random()*entries.length)];
+
+    document.getElementById("randomStationResult").innerHTML =
+      "<div style='padding:10px'>" +
+      "<b>🎲 Ausgewürfelt</b><br>" +
+      "📦 Material: " + random.material + "<br>" +
+      "🔢 Fehlt: " + random.missing + "<br>" +
+      "🏛 Station: " + getStationName(random.stationId) +
+      "</div>";
+
+  });
+
+}
+
+</script>
+</body>
+
+
+</html>

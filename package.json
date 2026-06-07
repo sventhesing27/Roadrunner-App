@@ -1,0 +1,27 @@
+{
+  "name": "roadrunner-app",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^8.4.0",
+    "@capacitor/cli": "^8.4.0",
+    "@capacitor/core": "^8.4.0"
+  },
+  "devDependencies": {
+    "electron": "^42.3.3",
+    "electron-builder": "^26.15.0"
+  }
+,
+  "build": {
+    "appId": "com.roadrunner.runaways",
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}

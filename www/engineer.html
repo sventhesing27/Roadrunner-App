@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Elite Dangerous – Engineering Companion (Deutsch)</title>
+
+
+<style>
+:root{
+--bg:#050816;
+--accent:#00eaff;
+--accent2:#c020ff;
+--text:#d9f7ff;
+}
+body{
+margin:0;
+font-family:Arial,sans-serif;
+color:var(--text);
+background:
+linear-gradient(rgba(5,8,22,.35),rgba(5,8,22,.45)),
+url("background.jpg");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+}
+header{
+background:rgba(5,10,25,.75);
+color:var(--accent);
+padding:24px;
+text-align:center;
+font-size:32px;
+font-weight:bold;
+letter-spacing:2px;
+border-bottom:1px solid rgba(0,234,255,.25);
+box-shadow:0 0 25px rgba(0,234,255,.15);
+}
+main{max-width:1400px;margin:auto;padding:20px;}
+.card{
+background:rgba(5,10,25,.10);
+border:1px solid rgba(255,255,255,.08);
+border-radius:24px;
+padding:24px;
+margin-bottom:24px;
+position:relative;
+overflow:hidden;
+box-shadow:0 0 15px rgba(0,234,255,.12),0 0 20px rgba(192,32,255,.08);
+}
+.card:before{
+content:"";
+position:absolute;top:0;left:0;
+width:90px;height:90px;
+border-top:2px solid #00eaff;
+border-left:2px solid #00eaff;
+}
+.card:after{
+content:"";
+position:absolute;right:0;bottom:0;
+width:90px;height:90px;
+border-right:2px solid #c020ff;
+border-bottom:2px solid #c020ff;
+}
+h1,h2,h3{color:var(--accent);}
+select{
+width:100%;
+padding:14px;
+border-radius:14px;
+background:rgba(5,10,25,.55);
+color:white;
+border:1px solid rgba(0,234,255,.18);
+}
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+font-weight:bold;
+color:white;
+background:linear-gradient(135deg,#00eaff,#c020ff);
+cursor:pointer;
+}
+table{
+width:100%;
+border-collapse:collapse;
+background:rgba(5,10,25,.08);
+border-radius:18px;
+overflow:hidden;
+}
+th{
+color:#00eaff;
+background:rgba(0,234,255,.06);
+}
+td,th{
+padding:10px;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+tr:hover{
+background:rgba(255,255,255,.03);
+}
+.result{
+margin-top:18px;
+padding:18px;
+border-radius:18px;
+background:rgba(5,10,25,.18);
+border:1px solid rgba(0,234,255,.15);
+}
+</style>
+
+</head>
+
+<body>
+
+<header>Elite Dangerous – Engineering Companion (Deutsch)</header>
+
+<main>
+
+<div class="card">
+
+<h3>Schiff auswählen</h3>
+<select id="ship">
+<option>Sidewinder</option>
+<option>Adder</option>
+<option>Hauler</option>
+<option>Eagle</option>
+<option>Imperial Eagle</option>
+<option>Viper Mk III</option>
+<option>Viper Mk IV</option>
+<option>Cobra Mk III</option>
+<option>Cobra Mk IV</option>
+<option>Vulture</option>
+<option>Diamondback Scout</option>
+<option>Diamondback Explorer</option>
+<option>Asp Scout</option>
+<option>Asp Explorer</option>
+<option>Keelback</option>
+<option>Type-6 Transporter</option>
+<option>Type-7 Transporter</option>
+<option>Type-9 Heavy</option>
+<option>Type-10 Defender</option>
+<option>Python</option>
+<option>Python Mk II</option>
+<option>Krait Mk II</option>
+<option>Krait Phantom</option>
+<option>Fer-de-Lance</option>
+<option>Mamba</option>
+<option>Alliance Chieftain</option>
+<option>Alliance Challenger</option>
+<option>Alliance Crusader</option>
+<option>Federal Dropship</option>
+<option>Federal Assault Ship</option>
+<option>Federal Gunship</option>
+<option>Federal Corvette</option>
+<option>Imperial Courier</option>
+<option>Imperial Clipper</option>
+<option>Imperial Cutter</option>
+<option>Anaconda</option>
+<option>Beluga Liner</option>
+<option>Orca</option>
+<option>Dolphin</option>
+<option>Corsair</option>
+<option>Kestrel MK II</option>
+<option>Mandalay</option>
+<option>Type-11 Prospector</option>
+<option>Caspian Explorer</option>
+<option>Panther Clipper MK II</option>
+<option>Lynx Highliner</option>
+</select>
+
+<h3>Einsatz auswählen</h3>
+<select id="role">
+<option>Kampf</option>
+<option>Erkundung</option>
+<option>Bergbau</option>
+<option>Handel</option>
+<option>AX (Anti‑Xeno)</option>
+<option>Allround</option>
+</select>
+
+<h3>Modul auswählen</h3>
+<select id="module">
+<option>Frameshift-Antrieb</option>
+<option>Triebwerke</option>
+<option>Kraftwerk</option>
+<option>Energieverteiler</option>
+<option>Lebenserhaltung</option>
+<option>Sensoren</option>
+<option>Schildgenerator</option>
+<option>Bi-Weave Schildgenerator</option>
+<option>Prismatischer Schildgenerator</option>
+<option>Schildverstärker</option>
+<option>Schildzellenbank</option>
+<option>Rumpfverstärkung</option>
+<option>Modulverstärkung</option>
+<option>Treibstoffsammler (Fuel Scoop)</option>
+<option>Frachterweiterung (Cargo Rack)</option>
+<option>Guardian FSD Booster</option>
+<option>Kühlkörperwerfer</option>
+<option>Täuschkörperwerfer (Chaff)</option>
+<option>Punktverteidigung</option>
+<option>ECM</option>
+<option>Pulslaser</option>
+<option>Burst-Laser</option>
+<option>Strahlenlaser</option>
+<option>Multikanone</option>
+<option>Kanone</option>
+<option>Fragmentkanone</option>
+<option>Railgun</option>
+<option>Plasmabeschleuniger</option>
+<option>Lenkraketenwerfer</option>
+<option>Ungelenkte Raketen</option>
+<option>Torpedowerfer</option>
+<option>Bergbaulaser</option>
+<option>Abrasion Blaster</option>
+<option>Seismic Charge Launcher</option>
+<option>AX Multikanone</option>
+<option>AX Raketenwerfer</option>
+<option>Guardian Gausskanone</option>
+<option>Guardian Plasma Charger</option>
+<option>Guardian Shard Cannon</option>
+</select>
+
+<button onclick="zeige()">Empfehlung anzeigen</button>
+
+<div id="result" class="result"></div>
+
+</div>
+
+<div class="card">
+
+<h3>Ingenieure und maximaler Grad</h3>
+
+<table>
+<thead>
+<tr>
+<th>Ingenieur</th>
+<th>System</th>
+<th>Spezialisierung</th>
+<th>Max Grad</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr><td>Felicity Farseer</td><td>Deciat</td><td>Frameshift‑Antrieb</td><td>Grad 5</td></tr>
+<tr><td>Elvira Martuuk</td><td>Khun</td><td>Frameshift‑Antrieb</td><td>Grad 5</td></tr>
+<tr><td>Professor Palin</td><td>Arque</td><td>Triebwerke</td><td>Grad 5</td></tr>
+<tr><td>The Dweller</td><td>Wyrd</td><td>Energieverteiler</td><td>Grad 5</td></tr>
+<tr><td>Marco Qwent</td><td>Sirius</td><td>Kraftwerk</td><td>Grad 4</td></tr>
+<tr><td>Hera Tani</td><td>Kuwemaki</td><td>Kraftwerk</td><td>Grad 5</td></tr>
+<tr><td>Lei Cheung</td><td>Laksak</td><td>Schildgenerator</td><td>Grad 5</td></tr>
+<tr><td>Didi Vatermann</td><td>Leesti</td><td>Schildverstärker</td><td>Grad 5</td></tr>
+<tr><td>Selene Jean</td><td>Kuk</td><td>Rumpfverstärkung</td><td>Grad 5</td></tr>
+<tr><td>Tod McQuinn</td><td>Wolf 397</td><td>Multikanonen</td><td>Grad 5</td></tr>
+<tr><td>Broo Tarquin</td><td>Muang</td><td>Laserwaffen</td><td>Grad 5</td></tr>
+<tr><td>Zacariah Nemo</td><td>Yoru</td><td>Fragmentkanonen</td><td>Grad 5</td></tr>
+<tr><td>Bill Turner</td><td>Alioth</td><td>Plasmabeschleuniger</td><td>Grad 5</td></tr>
+<tr><td>Lori Jameson</td><td>Shinrarta Dezhra</td><td>High‑End Engineering</td><td>Grad 5</td></tr>
+
+</tbody>
+</table>
+
+</div>
+
+<div class="card">
+
+<h3>Typische Builds nach Einsatz</h3>
+
+<table>
+<thead>
+<tr>
+<th>Einsatz</th>
+<th>Empfohlene Mods</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Kampf</td>
+<td>Aggressives Antriebe, verstärkte Schilde, Hochleistungs Multikanonen, Waffenfokussierter Energieverteiler</td>
+</tr>
+
+<tr>
+<td>Erkundung</td>
+<td>Frameshift‑Antrieb Erhöhte FSA-Reichweite, Leichte Module, Guardian FSD Booster</td>
+</tr>
+
+<tr>
+<td>Bergbau</td>
+<td>Energieverteiler Waffenfokussierte, Mining Laser, große Frachträume</td>
+</tr>
+
+<tr>
+<td>Handel</td>
+<td>Große Frachträume, verstärkte Schilde, effizientes Kraftwerk</td>
+</tr>
+
+<tr>
+<td>AX</td>
+<td>Guardian Gausskanonen, starke Rumpfverstärkung, Thermal Entlastete Laser</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</main>
+
+<script>
+
+function zeige(){
+const module=document.getElementById("module").value;
+const role=document.getElementById("role").value;
+
+let text="";
+
+if(module==="Frameshift-Antrieb"){
+text="<b>Empfohlen:</b> Erhöhte FSA-Reichweite (Grad 5) + Tieflader<br><b>Ingenieur:</b> Felicity Farseer / Elvira Martuuk";
+}
+else if(module==="Triebwerke"){
+text="<b>Empfohlen:</b> Aggressives Antriebstuning (Grad 5) + Drag-Antrieb<br><b>Ingenieur:</b> Professor Palin";
+}
+else if(module==="Energieverteiler"){
+text="<b>Empfohlen:</b> Waffenfokussierter Energieverteiler (Grad 5) + Flusssteuerung<br><b>Ingenieur:</b> The Dweller";
+}
+else if(module==="Schildgenerator" || module==="Bi-Weave Schildgenerator" || module==="Prismatischer Schildgenerator"){
+text="<b>Empfohlen:</b> verstärkte Schilde + Multigewebe<br><b>Ingenieur:</b> Lei Cheung";
+}
+else if(module==="Multikanone"){
+text="<b>Empfohlen:</b> Hochleistungsmagazin + Auto Lader<br><b>Ingenieur:</b> Tod McQuinn";
+}
+else if(module==="Strahlenlaser" || module==="Pulslaser" || module==="Burst-Laser"){
+text="<b>Empfohlen:</b> Waffeneffizienz + Thermischer Entlastung oder Übergrösse<br><b>Ingenieur:</b> Broo Tarquin";
+}
+else if(module==="Plasmabeschleuniger"){
+text="<b>Empfohlen:</b> Waffeneffizienz / Übergrösse<br><b>Ingenieur:</b> Bill Turner";
+}
+else{
+text="Für dieses Modul gibt es mehrere mögliche Engineering Mods.";
+}
+
+text+="<br><br><b>Einsatz:</b> "+role;
+
+document.getElementById("result").innerHTML=text;
+
+}
+
+</script>
+
+</body>
+</html>
