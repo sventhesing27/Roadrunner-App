@@ -6,7 +6,7 @@ function createWindow() {
     height: 900
   });
 
-  win.loadFile('www/index.html');
+  win.loadURL('https://roadrunner-runaways.com');
 }
 
 app.whenReady().then(createWindow);
